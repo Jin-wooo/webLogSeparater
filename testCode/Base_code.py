@@ -34,7 +34,7 @@ def dataset(path, mod='train'):  # 데이터셋을 생성합니다. 파싱한 �
 
 
 def vectorize(train_x, test_x):  # 문장을 벡터로 만듭니다 해당 코드에서는 기본적인 tf idf를 사용하고 있습니다.
-    tf = TfidfVectorizer()
+    tf = TfidfVectorizer(analyzer="char", ngram_range=(3, 3))
     tf = tf.fit(train_x)
     train_vec = tf.transform(train_x)
     test_vec = tf.transform(test_x)
@@ -42,7 +42,7 @@ def vectorize(train_x, test_x):  # 문장을 벡터로 만듭니다 해당 코�
 
 
 def train(train_vec, train_y):  # 랜덤 포레스트로 훈련 시킵니다. 모델을 바꾸고 싶다면 이 함수를 변경해야 합니다.
-    rf = RandomForestClassifier(random_state=35, )
+    rf = RandomForestClassifier()
     rf.fit(train_vec, train_y)
     return rf
 
