@@ -17,14 +17,14 @@ def parsing(path):#파싱을 진행하는 함수
             if not l:
                 break #파일을 전부 읽으면 읽기를 중단합니다.
 
-            if l != "\n":
+            if l != "\n":   #첫줄에는 URI가 있기 때문에 포함합니다.
                 para +=l
 
-            while l != "\n":
+            while l != "\n":    #필요없는 줄은 넘어갑니다.
                 l = f.readline()
 
             if para!='':
-                if para[:4]=='POST' or para[:3] == 'PUT': 
+                if para[:4]=='POST' or para[:3] == 'PUT':   #POST와 PUT에 대해서는 body를 포함합니다.
                     para+=f.readline()
                 train.append(para)
                 para=""
@@ -39,7 +39,7 @@ def dataset(path,mod='train'): #데이터셋을 생성합니다. 파싱한 데�
     return x, y
 
 def vectorize(train_x,test_x): #문장을 벡터로 만듭니다 해당 코드에서는 기본적인 tf idf를 사용하고 있습니다.
-    tf = TfidfVectorizer(analyzer="char", ngram_range = (3,3))
+    tf = TfidfVectorizer(analyzer="char", ngram_range = (3,3)) #trigram을 사용합니다.
     tf = tf.fit(train_x)
     train_vec = tf.transform(train_x)
     test_vec = tf.transform(test_x)
