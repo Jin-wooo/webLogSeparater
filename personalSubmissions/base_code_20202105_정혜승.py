@@ -1,3 +1,4 @@
+# %%
 import pandas as pd
 import re
 import numpy as np
@@ -7,10 +8,7 @@ from sklearn.metrics import accuracy_score, f1_score
 
 
 def parsing(path):  # 파싱을 진행하는 함수
-    with open(path, 'r', encoding='utf-8') as f:
-        # 파일을 읽어드리고 ['로그','로그',...] 이런식으로 로그를 구조화
-        # 아래 내용이 해석하기 좀 복잡하긴 한데,
-        # 메서드 이름과 URL, POST나 PUT의 경우 body를 긁어오는 코드라고 보면 됩니다.
+    with open(path, 'r', encoding='utf-8') as f:  # 파일을 읽어드리고 ['로그','로그',...] 이런식으로 로그를 구조화
         train = []
         para = ""
         while True:
