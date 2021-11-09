@@ -71,11 +71,6 @@ def run():
     tf = TfidfVectorizer()
     tf = tf.fit(train_x)
 
-    # print(len(tf.vocabulary_)) # 고유한 단어가 대략 8만개가 나옵니다
-
-    # print(tf.transform(train_x)[0]) #로그 하나당 약 8만차원이 나옵니다
-    # 필요없는 문장 때문에 단어의 개수가 많이 진것일  수도 있으니 데이터를 분석하여 필요한 부분만 사용하는것이 좋습니다
-
 
 if __name__ == "__main__":
     run()
